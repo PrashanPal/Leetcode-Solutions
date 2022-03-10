@@ -1,1 +1,1 @@
-​
+in Striver sheet also===(Kadaney's algorithm)
