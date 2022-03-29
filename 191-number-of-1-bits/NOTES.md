@@ -1,3 +1,17 @@
+**NOTE**=while doing binary operatortions on integers in java you dont need to convert them in binary numbers ,actually it happens automatically when you use binary operator
+**by me**==public class Solution {
+// you need to treat n as an unsigned value
+public int hammingWeight(int n) {
+String s=Integer.toBinaryString(n);
+int c=0;
+for(int i=0;i<s.length();i++){
+if(s.charAt(i)=='1'){
+c++;
+}
+}
+return c;
+}
+}
 **true solution**
 ​
 **1**--public static int hammingWeight(int n) {
@@ -22,4 +36,5 @@ count++;
 return count;
 }
 }
+​
 ​
