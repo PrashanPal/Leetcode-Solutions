@@ -1,33 +1,16 @@
 class Solution {
-    public boolean searchMatrix(int[][] matrix, int target) {
-        int m=matrix.length,n=matrix[0].length;
-        for(int i=0;i<m;i++){
-            if(matrix[i][0]<=target&&matrix[i][n-1]>=target){
+      public boolean searchMatrix(int[][] matrix, int target) {
+            int i = 0, j = matrix[0].length - 1;
+            while (i < matrix.length && j >= 0) {
+                    if (matrix[i][j] == target) {
+                        return true;
+                    } else if (matrix[i][j] > target) {
+                        j--;
+                    } else {
+                        i++;
+                    }
+                }
             
-                return binarySearch(matrix,0,n-1,target,i);
-        
-             }//for
-        }//for
-        return false;
-    }
-    
-     public boolean binarySearch(int arr[][], int first, int last, int key,int i){  
-   int mid = (first + last)/2;  
-   while( first <= last ){  
-      if ( arr[i][mid] < key ){  
-        first = mid + 1;     
-      }//if
-       else if ( arr[i][mid] == key ){  
-         return true; 
-      }//else if
-       else{  
-         last = mid - 1;  
-      } //else 
-      mid = (first + last)/2;  
-   } //while 
-   if ( first > last ){  
-      return false;  
-   }//if  
-         return false;
- }//bs 
-}//class
+            return false;
+        }
+}
