@@ -1,31 +1,40 @@
-**2 stack based solution:**
-public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-TreeNode c=root;
-List<List<Integer>> ans =new ArrayList<List<Integer>>();
-if(c==null) return ans;
-Stack<TreeNode> s1=new Stack<TreeNode>();
-Stack<TreeNode> s2=new Stack<TreeNode>();
-s1.push(root);
-while(!s1.isEmpty()||!s2.isEmpty())
-{
-List<Integer> tmp=new ArrayList<Integer>();
-while(!s1.isEmpty())
-{
-c=s1.pop();
-tmp.add(c.val);
-if(c.left!=null) s2.push(c.left);
-if(c.right!=null) s2.push(c.right);
-}
-ans.add(tmp);
-tmp=new ArrayList<Integer>();
-while(!s2.isEmpty())
-{
-c=s2.pop();
-tmp.add(c.val);
-if(c.right!=null)s1.push(c.right);
-if(c.left!=null)s1.push(c.left);
-}
 if(!tmp.isEmpty()) ans.add(tmp);
 }
 return ans;
 }
+​
+​
+**best approach**===uing 1 queue only
+here is my accepted Java code. Just a little change from the Binary Tree Level Order Traversal
+​
+I use a queue to implement BFS. Each time when I poll a node, I add this node value to level. I use a variable zigzag to indicate whether add from left to right or right to left. If zigzag == false, it is from left to right; if zigzag == true, it is from right to left.
+And from right to left just need to use ArrayList.add(0, value) method
+​
+List<List<Integer>> res = new ArrayList<>();
+if (root == null) return res;
+Queue<TreeNode> queue = new LinkedList<>();
+queue.add(root);
+boolean zigzag = false;
+while (!queue.isEmpty()) {
+List<Integer> level = new ArrayList<>();
+int cnt = queue.size();
+for (int i = 0; i < cnt; i++) {
+TreeNode node = queue.poll();
+if (zigzag) {
+level.add(0, node.val);
+}
+else {
+level.add(node.val);
+}
+if (node.left != null) {
+queue.add(node.left);
+}
+if (node.right != null) {
+queue.add(node.right);
+}
+}
+res.add(level);
+zigzag = !zigzag;
+}
+return res;
+​
