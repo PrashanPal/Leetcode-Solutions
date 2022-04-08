@@ -32,12 +32,10 @@ class Solution {
         }
         
         if(r.left!=null){
-            String s1=Integer.toString(r.left.val);
-        h(r.left,a,s+"->"+s1);
+        h(r.left,a,s+"->"+Integer.toString(r.left.val));
         }
         if(r.right!=null){
-             String s2=Integer.toString(r.right.val);
-        h(r.right,a,s+"->"+s2);
+        h(r.right,a,s+"->"+Integer.toString(r.right.val));
         }
     }
 }
