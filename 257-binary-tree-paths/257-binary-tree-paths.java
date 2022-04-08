@@ -33,15 +33,11 @@ class Solution {
         
         if(r.left!=null){
             String s1=Integer.toString(r.left.val);
-            s=s+"->"+s1;
-        h(r.left,a,s);
-            s=s.substring(0,s.length()-s1.length()-2);
+        h(r.left,a,s+"->"+s1);
         }
         if(r.right!=null){
              String s2=Integer.toString(r.right.val);
-            s=s+"->"+s2;
-        h(r.right,a,s);
-             s=s.substring(0,s.length()-s2.length()-2);
+        h(r.right,a,s+"->"+s2);
         }
     }
 }
