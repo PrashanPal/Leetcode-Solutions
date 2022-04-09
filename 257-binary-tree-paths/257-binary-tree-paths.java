@@ -19,6 +19,7 @@ class Solution {
         if(root==null){
             return a;
         }
+        
         String s=Integer.toString(root.val);
         h(root,a,s);
         return a;
@@ -32,10 +33,23 @@ class Solution {
         }
         
         if(r.left!=null){
-        h(r.left,a,s+"->"+Integer.toString(r.left.val));
+           // String s1=Integer.toString(r.left.val);
+           // s=s+"->"+s1;
+            
+           // s+=Integer.toString(r.left.val);
+             String p=Integer.toString(r.left.val);
+        h(r.left,a,s+"->"+p);
+           // s=s.substring(0,s.length()-s1.length()-2);
         }
+        
         if(r.right!=null){
-        h(r.right,a,s+"->"+Integer.toString(r.right.val));
+           //  String s2=Integer.toString(r.right.val);
+            //s=s+"->"+s2;
+            
+            // s+=Integer.toString(r.right.val);
+            String q=Integer.toString(r.right.val);
+        h(r.right,a,s+"->"+q);
+       //  s=s.substring(0,s.length()-s2.length()-2);
         }
     }
 }
