@@ -13,42 +13,29 @@
  *     }
  * }
  */
-class Solution {
+public class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
-        List<String> a=new ArrayList<>();
-        if(root==null){
-            return a;
-        }
-        
-        String s=Integer.toString(root.val);
-        h(root,a,s);
-        return a;
+        List<String> rst = new ArrayList<String>();
+        if(root == null) return rst;
+        StringBuilder sb = new StringBuilder();
+        helper(rst, sb, root);
+        return rst;
     }
     
-    public void h(TreeNode r,List<String> a,String s){
-        if(r.left==null&&r.right==null){
-            String t=s;
-            a.add(t);
+    public void helper(List<String> rst, StringBuilder sb, TreeNode root){
+        if(root == null) return;
+        int tmp = sb.length();
+        if(root.left == null && root.right == null){
+            sb.append(root.val);
+            rst.add(sb.toString());
+           sb.delete(tmp , sb.length());// i.e. delete from temp to sb.length()
             return;
         }
-        if(r.left!=null){
-           // String s1=Integer.toString(r.left.val);
-           // s=s+"->"+s1;
-            
-           // s+=Integer.toString(r.left.val);
-            String p=Integer.toString(r.left.val);
-        h(r.left,a,s+"->"+p);
-           // s=s.substring(0,s.length()-s1.length()-2);
-        }
+        sb.append(root.val + "->");
+        helper(rst, sb, root.left);
+        helper(rst, sb, root.right);
+        sb.delete(tmp , sb.length());
+        return;
         
-        if(r.right!=null){
-           //  String s2=Integer.toString(r.right.val);
-            //s=s+"->"+s2;
-            
-            // s+=Integer.toString(r.right.val);
-            String p=Integer.toString(r.right.val);
-        h(r.right,a,s+"->"+p);
-       //  s=s.substring(0,s.length()-s2.length()-2);
-        }
     }
 }
