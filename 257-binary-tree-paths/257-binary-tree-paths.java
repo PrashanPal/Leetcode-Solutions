@@ -31,13 +31,12 @@ class Solution {
             a.add(t);
             return;
         }
-        String p="";
         if(r.left!=null){
            // String s1=Integer.toString(r.left.val);
            // s=s+"->"+s1;
             
            // s+=Integer.toString(r.left.val);
-             p=Integer.toString(r.left.val);
+            String p=Integer.toString(r.left.val);
         h(r.left,a,s+"->"+p);
            // s=s.substring(0,s.length()-s1.length()-2);
         }
@@ -47,7 +46,7 @@ class Solution {
             //s=s+"->"+s2;
             
             // s+=Integer.toString(r.right.val);
-             p=Integer.toString(r.right.val);
+            String p=Integer.toString(r.right.val);
         h(r.right,a,s+"->"+p);
        //  s=s.substring(0,s.length()-s2.length()-2);
         }
