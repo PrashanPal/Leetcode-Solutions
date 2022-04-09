@@ -14,27 +14,15 @@
  * }
  */
 class Solution {
-    public int sumOfLeftLeaves(TreeNode root) {
-        int s=0;
-        int t=h(root,s,0);
-        return t;
+public int sumOfLeftLeaves(TreeNode root) {
+    if(root == null) return 0;
+    int ans = 0;
+    if(root.left != null) {
+        if(root.left.left == null && root.left.right == null) ans += root.left.val;
+        else ans += sumOfLeftLeaves(root.left);
     }
-    public int h(TreeNode r,int s,int f){
-        if(r==null)
-            return 0;
-        if(r.left==null&&r.right==null){
-            if(f==1){
-                return r.val;
-            }
-            return 0;
-        }
-        int p=0,q=0;
-        if(r.right!=null){
-            p= h(r.right,s,2);
-        }
-        if(r.left!=null){
-            q=h(r.left,s,1);
-        }
-        return p+q;
-    }
+    ans += sumOfLeftLeaves(root.right);
+    
+    return ans;
+}
 }
