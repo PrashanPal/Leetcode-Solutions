@@ -16,22 +16,14 @@
 class Solution {
     public int sumNumbers(TreeNode root) {
         if(root==null) return 0;
-        ArrayList<String> a=new ArrayList<>();
-        h(root,a,"");
-        int sum=0;
-        for(String i:a){
-             sum+=Integer.parseInt(i);  
-        }
-        return sum;
+        return h(root,0);
     }
-    public void h(TreeNode r,List<String> a,String s){
-        if(r==null) return;
+    public int h(TreeNode r,int sum){
+        if(r==null) return 0;
+        sum=sum*10+r.val;
         if(r.left==null&&r.right==null){
-            s+=Integer.toString(r.val);
-            a.add(s);
-            return;
+            return sum;
         }
-        h(r.left,a,s+Integer.toString(r.val));
-         h(r.right,a,s+Integer.toString(r.val));
+         return h(r.left,sum) + h(r.right,sum);
     }
 }
