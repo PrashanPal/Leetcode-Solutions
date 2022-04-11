@@ -27,8 +27,8 @@ class Solution {
     public void h(TreeNode r,List<String> a,String s){
         if(r==null) return;
         if(r.left==null&&r.right==null){
-            String t=s+Integer.toString(r.val);
-            a.add(t);
+            s+=Integer.toString(r.val);
+            a.add(s);
             return;
         }
         h(r.left,a,s+Integer.toString(r.val));
