@@ -67,6 +67,5 @@ class Solution {
                 board[r][c]=a[r][c];
             }//for
         }//for
-        
     }
 }
