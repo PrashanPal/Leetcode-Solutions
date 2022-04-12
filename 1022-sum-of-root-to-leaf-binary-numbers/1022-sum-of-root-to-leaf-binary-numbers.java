@@ -14,26 +14,17 @@
  * }
  */
 class Solution {
-    public int sumRootToLeaf(TreeNode root) {
-        String s="";
-        ArrayList<String> a=new ArrayList<>();
-        h(a,root,s);
-        int sum=0;
-        for(String i:a){
-          sum+=Integer.parseInt(i,2);  
-        }
-        return sum;
-            
-    }
-    public void h(ArrayList<String> a,TreeNode r,String s){
-        if(r==null) return;
-        s+=Integer.toString(r.val);
-        if(r.left==null&&r.right==null){
-            a.add(s);
-            return;
-        }
-        h(a,r.left,s);
-          h(a,r.right,s);
-        
-    }
+    int sum = 0;
+public int sumRootToLeaf(TreeNode root) {
+	dfs(root,"");
+	return sum;
+}
+
+public void dfs(TreeNode root, String curr) {
+	if(root==null) return;
+	if(root.right==null && root.left==null)
+		sum += Integer.parseInt(curr+root.val,2);
+	dfs(root.right, curr+root.val);
+	dfs(root.left, curr+root.val);    
+}
 }
