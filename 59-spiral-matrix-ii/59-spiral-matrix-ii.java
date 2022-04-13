@@ -2,6 +2,11 @@ class Solution {
     public int[][] generateMatrix(int n) {
         int a[][]=new int[n][n];
         int l=0,p=1;
+        h(a,n,l,p);
+        return a;
+    }
+    
+    public void h(int a[][],int n,int l,int p){
         while(p<=n*n){
             for(int i=l;i<=n-l-1;i++){
                 if(p<=n*n)
@@ -25,6 +30,8 @@ class Solution {
             }
             l++;
         }//while
-        return a;
+    if(p<=n*n){
+        h(a,n,l+1,p);
+    }
     }
 }
