@@ -1,3 +1,5 @@
+**awesome question**
+​
 Since this is a BST, we can do a reverse inorder traversal to traverse the nodes of the tree in descending order. In the process, we keep track of the running sum of all nodes which we have traversed thus far.
 ​
 public class Solution {
