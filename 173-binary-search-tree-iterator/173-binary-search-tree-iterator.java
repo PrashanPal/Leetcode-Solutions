@@ -21,21 +21,20 @@ class BSTIterator {
     }
     public void addnodel(TreeNode r){
         while(r!=null){
-            this.s.push(r);
+            s.push(r);
             r=r.left;
         }
     }
     public int next() {
-        TreeNode t=this.s.pop();
+        TreeNode t=s.pop();
         addnodel(t.right);
         return t.val;
     }
     
     public boolean hasNext() {
-        return this.s.size()>0;
-    }
+        return s.size()>0;
 }
-
+}
 /**
  * Your BSTIterator object will be instantiated and called as such:
  * BSTIterator obj = new BSTIterator(root);
