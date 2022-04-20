@@ -32,7 +32,7 @@ class BSTIterator {
     }
     
     public boolean hasNext() {
-        return s.size()>0;
+        return this.s.size()>0;
     }
 }
 
