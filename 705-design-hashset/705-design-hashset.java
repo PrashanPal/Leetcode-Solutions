@@ -1,24 +1,22 @@
-class MyHashSet {
-    ArrayList<Integer> a;
-    public MyHashSet() {
-         a=new ArrayList<>();
+class MyHashSet extends HashSet<Integer>{
+   boolean b[];
+       public MyHashSet() {
+       //MyHashSet a=new     MyHashSet();
+          b =new boolean[10000001];
     }
     
     public void add(int key) {
-        if(!a.contains(key)){
-            a.add(key);
-        }
+        b[key]=true;
     }
     
     public void remove(int key) {
-        if(a.contains(key)){
-            int i=a.indexOf(key);
-            a.remove(i);
+        if(b[key]){
+            b[key]=false;
         }
     }
     
     public boolean contains(int key) {
-        return a.contains(key);
+        return b[key];
     }
 }
 
