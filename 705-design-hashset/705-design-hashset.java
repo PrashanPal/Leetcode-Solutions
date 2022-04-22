@@ -1,8 +1,9 @@
 class MyHashSet extends HashSet<Integer>{
-   boolean b[];
+   boolean b[]=new boolean[10000001];;
        public MyHashSet() {
        //MyHashSet a=new     MyHashSet();
-          b =new boolean[10000001];
+         // b =new boolean[10000001];
+          // int p=5;
     }
     
     public void add(int key) {
@@ -16,6 +17,7 @@ class MyHashSet extends HashSet<Integer>{
     }
     
     public boolean contains(int key) {
+       // System.out.print(p+" ");
         return b[key];
     }
 }
