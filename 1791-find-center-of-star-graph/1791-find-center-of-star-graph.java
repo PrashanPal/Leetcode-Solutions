@@ -1,16 +1,9 @@
 class Solution {
-    public int findCenter(int[][] edges) {
-        HashMap<Integer,Integer> h=new HashMap<>();
-        for(int i=0;i<edges.length;i++){
-            for(int j=0;j<edges[0].length;j++){
-                if(h.containsKey(edges[i][j])){
-                    return edges[i][j];
-                }
-                else{
-                    h.put(edges[i][j],0);
-                }
-            }//for
-        }//for
-        return 0;
-    }
+   public int findCenter(int[][] edges) {
+	if(edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1]) {
+		return edges[0][0];
+	} else {
+		return edges[0][1];
+	}
+}
 }
