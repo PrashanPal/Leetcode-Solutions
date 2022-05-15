@@ -23,3 +23,7 @@ if (top.right != null) q.offer(top.right);
 return sum;
 }
 }
+​
+​
+https://leetcode.com/problems/deepest-leaves-sum/discuss/464774/Java-1ms-DFS-single-traversal-O(N)
+This one is the best because it uses  * preorder traversal *  ,where leafs having *maximum* *depth *a added only.**
