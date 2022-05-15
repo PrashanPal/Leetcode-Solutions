@@ -20,6 +20,9 @@ class Solution {
         q.add(root);
         while(q.size()>0){
             List<Integer> b=new ArrayList<>();
+            if(a.size()>0){
+                a.remove(0);
+            }
         int s=q.size();
         while(s>0){
             TreeNode t=q.remove();
@@ -32,7 +35,7 @@ class Solution {
         }//while
             a.add(b);
         }//while
-        List<Integer> c=new ArrayList<>(a.get(a.size()-1));
+        List<Integer> c=new ArrayList<>(a.get(0));
         int s=0;
         for(Integer i:c){
             s=s+i;
