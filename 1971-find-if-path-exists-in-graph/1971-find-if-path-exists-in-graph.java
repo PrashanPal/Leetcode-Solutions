@@ -17,19 +17,19 @@ class Solution {
          //NOTE--DFS and BFS avoids the need of recurrsive approach
 		
         boolean[] visited = new boolean[n];
-        Queue<Integer> q= new ArrayDeque<Integer>();
-        q.add(start);//def approach is used ---> non-recursive approach
-         visited[start] = true;
-        while (!q.isEmpty()) {
-            int current = q.remove();
-            if (current == end) return true;
-            for (int neighbor : graph[current]) {//where graph[current]-->an arraylist
-                if (!visited[neighbor]) {
-                     visited[neighbor] = true;
-                    q.add(neighbor);
-                }
-            }
-        }
-        return false;      
+        return h(graph,visited,start,end);
      }
+    public boolean h(ArrayList<Integer>[] g,boolean[] b,int s,int e){
+        if(s==e) return true;
+            b[s]=true;//NOTE-->
+            for(int i:g[s]){
+                if(!b[i]){
+                boolean t=h(g,b,i,e);
+                    if(t){
+                        return t;
+                    }
+                }
+            }//for
+        return false;
+    }
 }
