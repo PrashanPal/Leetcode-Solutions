@@ -20,6 +20,9 @@ class Solution {
                     q.add(new p(i,j));
             }//for
         }//for
+          if(q.size() == 0 || q.size() == grid.length * grid[0].length) {     //Found no 1's in the grid  //Empty queue
+            return -1;                                       //Found no 0's in the grid  //Full queue
+        }
         int r=h(grid,q);
          if(r>0) return r;
          return -1;
