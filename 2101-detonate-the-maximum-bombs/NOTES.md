@@ -1,43 +1,34 @@
-ans = Math.max(ans, count);
-}
-return ans;
-}
-​
-private void dfs(int idx, boolean[] v, int[][] bombs) {
-count++;
-v[idx] = true;
-int n = bombs.length;
-for (int i = 0; i < n; i++) {
-if (!v[i] && inRange(bombs[idx], bombs[i])) {
-v[i] = true;
-dfs(i, v, bombs);
-}
-}
-}
-​
-private boolean inRange(int[] a, int[] b) {
-long dx = a[0] - b[0], dy = a[1] - b[1], r = a[2];
-return dx * dx + dy * dy <= r * r;
-}
-class Solution {
-class p{
-int x;
-int y;
-int r;
-int i;
-p(int x,int y,int r,int i){
-this.x=x;
-this.y=y;
-this.r=r;//radius
-this.i=i;//index to be marked true in boolean array while performing multi source BFS
-}
-}
-public int maximumDetonation(int[][] bombs) {
-int m=0;//to count maximum no. of bombs counted
-boolean b[]=new boolean[bombs.length];//to counted visited bombs in each call
-Queue<p> q=new ArrayDeque<>();
 for(int i=0;i<bombs.length;i++){
 Arrays.fill(b,false);
 int c=h(bombs,i,q,b,0);
 m=Math.max(m,c);
 }//for
+return m;
+}//fn
+public int h(int[][] g,int i,Queue<p> q,boolean b[],int c){
+q.add(new p(g[i][0],g[i][1],g[i][2],i));
+while(q.size()>0){
+p t=q.poll();
+//if(b[t.i]==false){
+b[t.i]=true;//it is necessary to mark bomb visited
+c++;
+int radius=t.r;
+for(int j=0;j<g.length;j++){
+if(b[j]==false){
+int d=dis(t.x,t.y,g[j][0],g[j][1]);
+if(d*d<=radius*radius){
+q.add(new p(g[j][0],g[j][1],g[j][2],j));
+b[j]=true;
+}//if
+}//if
+}//for
+// }//if
+}//while
+return c;
+}//h
+public int dis(int x,int y,int x1,int y1){
+int a=Math.abs(x-x1);
+int b=Math.abs(y-y1);
+return a+b;
+}//dis
+}//class
