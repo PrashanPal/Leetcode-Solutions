@@ -2,12 +2,20 @@ class Solution {
     public int numBusesToDestination(int[][] routes, int source, int target) {
          int n = routes.length;
     HashMap<Integer, ArrayList<Integer>> stopmap = new HashMap<>();
+         for (int i = 0; i < n; i++) {
+  for (int j = 0; j < routes[i].length; j++) {
+      if(!stopmap.containsKey(routes[i][j]))
+          stopmap.put(routes[i][j],new ArrayList<Integer>());
+  }//for
+         }//fpr
 
     for (int i = 0; i < n; i++) {
-      for (int j = 0; j < routes[i].length; j++) {
+  for (int j = 0; j < routes[i].length; j++) {
+      //odserve that  j<routes[i].length is used here instead of  j<routes[0].length
         int busstop = routes[i][j];
 
-        ArrayList<Integer> busno = stopmap.getOrDefault(busstop, new ArrayList<>());
+        //ArrayList<Integer> busno = stopmap.getOrDefault(busstop, new ArrayList<>());
+     ArrayList<Integer> busno =stopmap.get(busstop);
         busno.add(i);
         stopmap.put(busstop, busno);
       }
