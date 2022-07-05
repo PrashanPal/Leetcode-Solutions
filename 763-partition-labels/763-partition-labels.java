@@ -1,4 +1,5 @@
 class Solution {
+    //me
     //bruete force approach: create an array and filled it with last index of each character i.e O(n^2) time it takes
     //now elements in this span ,are in one partition
     //another brute force :insted of n^2 ,we can do same thing in n,by using a hashmap ,which contains last index of each character as a value
