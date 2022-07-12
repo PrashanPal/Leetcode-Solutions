@@ -6,7 +6,7 @@
 //                 b[j][i]=matrix[i][j];
 //             }//for
 //         }//for
-//         return b;
+//         return matrix;
 //     }
 // }
 
@@ -26,16 +26,14 @@ public int[][] transpose(int[][] A) {
 		}        
 		return B;
 }
-
+//for square matrix
 private void inPlace(int[][] A) {
-		int col = 0;
 		for (int i = 0; i<A.length ; i++) {
-				for (int j=col ; j<A[0].length ; j++) {
+				for (int j=i; j<A[0].length ; j++) {
 						int temp = A[i][j];
 						A[i][j] = A[j][i];
 						A[j][i] = temp;
 			}//for
-				col++;
 	}//for
 }//inPlace
 }//class
