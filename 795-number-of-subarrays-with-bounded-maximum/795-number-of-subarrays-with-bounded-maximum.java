@@ -4,10 +4,12 @@ class Solution {
     //   8
     //by me 
     //pep ,n2--98
+    //time n and space n
+    //also see another method which is at pep2 , it is n time o(1) space ,approach is similar to mine but instead of queue ql ,for storing boundary indexes it uses two pointer approach ,rest approach and code is same
     public int numSubarrayBoundedMax(int[] nums, int left, int right) {
         int c=0;//to count no. of subarrays
         Queue<Integer> ql=new ArrayDeque<>();//it store index of all the elements who are greater than right
-          Queue<Integer> qs=new ArrayDeque<>();//it store index of all the elemnts who are less then left
+        //  Queue<Integer> qs=new ArrayDeque<>();//it store index of all the elemnts who are less then left
           Queue<Integer> q=new ArrayDeque<>();
         for(int i=0;i<nums.length;i++){
           if(nums[i]>right){
@@ -15,13 +17,13 @@ class Solution {
               nums[i]=-1;//it means that this element is greater then right
           }//if
             else if(nums[i]<left){
-            qs.add(i);
+          //  qs.add(i);
               nums[i]=-2;//it means that this element is smaller than left
           }//if
             else q.add(i);
         }//foe
         ql.add(nums.length);
-        qs.add(nums.length);
+       // qs.add(nums.length);
         for(int i=0;i<nums.length;i++){
             if(nums[i]!=-2&&nums[i]!=-1){
                 c=c+ql.peek()-i;
@@ -31,7 +33,7 @@ class Solution {
                 if(q.size()>0&&ql.size()>0&&q.peek()<ql.peek()){
                     c=c+ql.peek()-q.peek();//this is the most important line
                 }
-                qs.poll();
+               // qs.poll();
             }//else if
             else if(nums[i]==-1)
                 ql.poll();
