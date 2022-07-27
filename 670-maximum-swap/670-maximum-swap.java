@@ -6,6 +6,9 @@ class Solution {
 
 // Next time we scan the digits from left to right and find the first digit that is less than max to do the swap.
     public int maximumSwap(int num) {
+        //n2--119
+        //nice concept
+        //see notes for easy understanding
          char[] digits = String.valueOf(num).toCharArray();
         int[] maxIdx = new int[digits.length];
         int maxPos = digits.length - 1;
