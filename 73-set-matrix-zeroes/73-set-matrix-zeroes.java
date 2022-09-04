@@ -12,13 +12,13 @@ class Solution {
                 }//if
             }//for
         }//for
-        for(int e:r){
-            for(int j=0;j<matrix[0].length;j++){
+        for(int e:r){//r-->rows which contains 0
+            for(int j=0;j<matrix[0].length;j++){//for marking 0 in all the columns of that row
                 matrix[e][j]=0;
             }
         }
-         for(int e:c){
-            for(int i=0;i<matrix.length;i++){
+         for(int e:c){//c-->columns which contans 0
+            for(int i=0;i<matrix.length;i++){//for marking 0 in all the rows of that column
                 matrix[i][e]=0;
             }
         }
