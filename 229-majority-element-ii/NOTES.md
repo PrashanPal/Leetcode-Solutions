@@ -1,3 +1,5 @@
+n2-88
+s450
 https://leetcode.com/problems/majority-element-ii/discuss/63500/JAVA-Easy-Version-To-Understand!!!!!!!!!!!!
 public List<Integer> majorityElement(int[] nums) {
 if (nums == null || nums.length == 0)
