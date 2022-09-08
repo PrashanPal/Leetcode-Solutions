@@ -7,11 +7,16 @@ class Solution {
     Arrays.sort(arr);
     
     for (int i = 0; i < n - 3; i++) {
-
+            if(i==0||arr[i]!=arr[i-1]){//important
         long target_3 = target - arr[i]; // 3 sum
+                //NOTE: taking long as data is reason of passing the test case -->
+                // [1000000000,1000000000,1000000000,1000000000]
+                // -294967296
+                //bca -294967296-10000 int belongs to integer ,it actually belongs to long
+
 
         for (int j = i + 1; j < n - 2; j++) {
-
+               if(j==i+1||arr[j]!=arr[j-1]){//main saul of this question
             long target_2 = target_3 - arr[j]; // 2 sum
 
             int left = j + 1;
@@ -19,12 +24,13 @@ class Solution {
 
             while (left < right) {
                 long sum = arr[left] + arr[right];
-                
                 if (sum < target_2) {
                     left++;
-                } else if (sum > target_2) {
+                }//if 
+                else if (sum > target_2) {
                     right--;
-                } else {
+                }//else if  
+                else {
                     List<Integer> subList = new ArrayList<>();
                     subList.add(arr[i]);
                     subList.add(arr[j]);
@@ -41,21 +47,12 @@ class Solution {
                     while (left < right && arr[right] == arr[right - 1])
                         right--;
                     right--;
-                }
-            }
-
-            // Processing the duplicates of 3 sum
-            while (j < n - 2 && arr[j] == arr[j + 1])
-                j++;
-        }
-
-        // Processing the duplicates of 4 sum
-        while (i < n - 3 && arr[i] == arr[i + 1])
-            i++;
-
-    }
-
-
+                }//else
+            }//while
+            }//if j
+            }//for j
+        }//if i
+    }//for i
     return list;
     }
 }
