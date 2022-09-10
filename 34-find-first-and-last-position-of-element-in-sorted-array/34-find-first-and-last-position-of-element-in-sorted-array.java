@@ -1,67 +1,48 @@
 class Solution {
-    //by me
-    public int[] searchRange(int[] nums, int target) {
-        int a[]=new int[2];
-        if(nums.length==0){
-            a[0]=-1;
-            a[1]=-1;
-            return a;
+    public static int first(int nums[],int low , int high , int target){
+    if(low<=high){
+        int mid = low + (high - low )/2;
+        if(nums[mid]==target) {
+            if(mid == 0 || nums[mid-1] != target) return mid;
+            else if(nums[mid-1] == target) return first(nums , low , mid-1 , target);
+        } else if(target > nums[mid]){
+            return first(nums , (mid+1) , high , target);
         }
-        if(nums.length==1){
-            if(nums[0]==target){
-                a[0]=0;
-                a[1]=0;
-            }
-            else{
-                a[0]=-1;
-                a[1]=-1;
-            }
-            return a;
+        else{
+            return first(nums , low , mid-1 , target);
         }
-        int s=0;
-        int h=nums.length-1;
-        int mid=(s+h)/2;
-        while(s<=h){
-            mid=(s+h)/2;
-            if(nums[mid]==target) break;
-            else if(nums[mid]>target) h=mid-1;
-            else if(nums[mid]<target) s=mid+1;
-        }
-        if(s>h){
-            a[0]=-1;
-            a[1]=-1;
-            return a;
-        }//if
-//         else if(mid==nums.length-1&&nums[mid]==target){//end point
-//             a[1]=mid;
-//              int t=mid-1;
-//              while(t>=0&&nums[t]==target){
-//                  t=t-1;
-//              }//while
-//              a[0]=t+1;
-//         }//else if
-//          else if(mid==0&&nums[mid]==target){//start point
-//             a[0]=mid;
-//             int t=mid+1;
-//              while(t<nums.length&&nums[t]==target){
-//                  t=t+1;
-//              }//while
-//              a[1]=t-1;
-             
-//         }//else if
-        else if(mid>=0&&mid<=nums.length-1&&nums[mid]==target){
-            int l=mid-1;//for checking left
-            int r=mid+1;//for checking right
-            while(l>=0&&nums[l]==target){
-                 l=l-1;
-             }//while
-             a[0]=l+1;
-            
-             while(r<nums.length&&nums[r]==target){
-                 r=r+1;
-             }//while
-             a[1]=r-1;
-        }//else if 
-        return a;
     }
+    return -1;
+    
+}
+public static int last(int nums[],int low , int high , int target){
+    if(low<=high){
+        int mid = low + (high - low )/2;
+        if(nums[mid]==target) 
+        {
+            if(mid == nums.length-1 || nums[mid+1] != target) return mid;
+            else if(nums[mid+1] == target) return last(nums , (mid+1) , high , target);
+        } else if(target < nums[mid]){
+            return last(nums , low , (mid-1) , target);
+        }
+        else{
+            return last(nums , (mid+1) , high , target);
+        }
+    }
+    return -1;
+}
+public int[] searchRange(int[] nums, int target) {
+    int low=0;
+    int high=nums.length-1;
+    int arr[]=new int[2];
+    if(nums.length == 1 && nums[0] == target){
+        arr[0] = 0;
+        arr[1] = 0;
+    } else {
+    arr[0]=first(nums , low , high , target);
+    arr[1]=last(nums , low , high , target);
+    }
+    return arr;
+    
+}
 }
