@@ -1,29 +1,55 @@
-// The idea is that when rotating the array, there must be one half of the array that is still in sorted order.
-// For example, 6 7 1 2 3 4 5, the order is disrupted from the point between 7 and 1. So when doing binary search, we can make a judgement that which part is ordered and whether the target is in that range, if yes, continue the search in that half, if not continue in the other half.
-//nice approach
-public class Solution {
+class Solution {//s450 awesome question
     public int search(int[] nums, int target) {
-        int start = 0;
-        int end = nums.length - 1;
-        while (start <= end){
-            int mid = (start + end) / 2;
-            if (nums[mid] == target)
-                return mid;
-        
-            if (nums[start] <= nums[mid]){
-                 if (target < nums[mid] && target >= nums[start]) 
-                    end = mid - 1;
-                 else
-                    start = mid + 1;
-            } 
-        
-            if (nums[mid] <= nums[end]){
-                if (target > nums[mid] && target <= nums[end])
-                    start = mid + 1;
-                 else
-                    end = mid - 1;
-            }
-        }
-        return -1;
-    }
-}
+int s=0,e=nums.length-1;
+        int r[]={-1};
+         if(nums[s]<=nums[e]){//this line is awesome ,it means array is sorted from s to e ,so you apply binary search in it
+            r[0]=bs(nums,target,s,e);
+            return r[0];
+        }//if
+        r[0]= check(nums,target,s,e,r);
+        return r[0];
+    }//search
+    
+    public int check(int a[],int t,int s,int e,int r[]){
+       if(s>e) return -1;
+        if(s<=e){
+            int m=(s+e)/2;
+            if(a[m]==t){
+                r[0]=m;
+                return r[0];
+             }//if
+        if(m>s&&a[s]<=a[m-1]){//it means left end is sorted
+            if(t>=a[s]&&t<=a[m-1]){//it means element is in left sorted end
+                r[0]= bs(a,t,s,m-1);
+                return r[0];
+            }//if
+            else{//it means element is in right un sorted end
+                r[0]= check(a,t,m+1,e,r);
+                return r[0];
+            }//esle
+        }//if
+       else if(m<e&&a[m+1]<=a[e]){//it means right end is sorted
+            if(t>=a[m+1]&&t<=a[e]){//it means element is in right sorted end
+                r[0]= bs(a,t,m+1,e);
+                return r[0];
+            }//if
+            else{//it means element is in leftt un sorted end
+                r[0]= check(a,t,s,m-1,r);
+                return r[0];
+            }//else
+        }//if       
+    }//final if
+          return -1;
+    }//check
+    
+        public int bs(int a[],int t,int s,int e){
+            if(s>e) return -1;
+            while(s<=e){
+                int m=(s+e)/2;
+                if(a[m]==t) return m;
+                else if(m<=e&&a[m]<t) s=m+1;
+                else if(m>=s&&a[m]>t) e=m-1;
+            }//while
+            return -1;
+        }//bs
+}//class
