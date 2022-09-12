@@ -1,0 +1,4 @@
+**approach:** since array contains only 1 single element ,while others are always in pairs , so lenght of array is always odd
+on basis of above stmt lest understand this example [1,1,2,3,3,4,4,8,8]
+here total we 9 elemnts and a[mid] ==last 3 ---> now a[m]==3 and a[m-1]==3 i,e frequency of 3 is 2 i.e it is not the single elment , s=0 ,e=8 and mid index=4 , e-m==4 which is even i.e right part of mid doesn't contains any single element --> it means single element is in left part of array and we have to apply binary search there i.e s=0,e=m-2.
+Another example: [3,3,7,7,10,11,11] here e=6 ,s=0,m=3 .i.e last index of 7 ,again a[m-1]=a[m] ,i.e 7 is in pair ,now e-m=6-3==odd ,--> it means single element will be in the right part of mid
