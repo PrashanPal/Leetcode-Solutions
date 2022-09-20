@@ -1,4 +1,5 @@
 class Solution {
+    //this is the simplest and easiest way
     // this is method 2: this method is not much efficient as method1 , and complex also 
     //approach: here i dont use string.trim function  , here i have taken two substrings sb for storing final result and string st ,for forming words in a string a and each time on completion of st , i insert st on the 0th position of sb followed by blank space , to seperate two words
     public String reverseWords(String s) {
