@@ -19,7 +19,7 @@ class Solution {
             return true;
         }
         int t=h(root);
-        if(t<0){
+        if(t<0){//if returned value is -1
             return false;
         }
         return true;
@@ -31,6 +31,7 @@ class Solution {
         int l=h(r.left);
         int f=h(r.right);
         if(l<0||f<0||Math.abs(l-f)>1){
+//this is the most important line, i,e if any one is unblanced then return -1, and this chain continue
             return -1;
         }
         return Math.max(l,f)+1;
