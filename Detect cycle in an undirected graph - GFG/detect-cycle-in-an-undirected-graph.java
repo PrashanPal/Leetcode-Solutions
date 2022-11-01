@@ -33,6 +33,7 @@ class GFG {
 
 
 class Solution {
+    //bfs based approach
     // Function to detect cycle in an undirected graph.
     //since graph is undirected so 1->2 and 2->1 both are same ,so it is also a cycle and we have to avoid 
     //this case  so ,its necessay to pass both current object and parent
@@ -42,27 +43,35 @@ class Solution {
         boolean bb[]=new boolean[v];
         for(int i=0;i<v;i++){
             if(b[i]==false){
-                boolean r=detect(b,bb,adj,v,i,-1);
+                boolean r=detect(b,bb,adj,v,i);
                 if(r==true) return true;
             }//if
         }//for
         return false;//i,e not cyclic
     }
-    public boolean detect(boolean b[],boolean bb[],ArrayList<ArrayList<Integer>> a,int v,int j,int p){
+    public boolean detect(boolean b[],boolean bb[],ArrayList<ArrayList<Integer>> a,int v,int j){
         b[j]=true;
         bb[j]=true;
-      //  System.out.println(p);
-        ArrayList<Integer> aa=new ArrayList<>(a.get(j));
-        for(int i=0;i<aa.size();i++){
-            int t=aa.get(i);
-            if(t!=p){
-                if(b[t]==false){
-                    boolean r=detect(b,bb,a,v,t,j);
-                    if(r==true) return true;
-                }//if
-                if(b[t]==true&&bb[t]==true) return true;
-            }//if
-        }//for
+        Queue<Integer> q=new ArrayDeque<>();
+        q.add(j);
+        int s=q.size();
+        while(s-->0){
+            int t=q.remove();
+            //bb[t]=false;//i.e element is removed from queue
+         ArrayList<Integer> aa=new ArrayList<>(a.get(t));
+         for(int i=0;i<aa.size();i++){
+             int m=aa.get(i);
+             if(b[m]==true&&bb[m]==true) //ie element is already traversed and also currently present in queue
+             return true;//cycle is present
+             else if(b[m]!=true){//i.e if its adjacent vertex is not already traversed,to avoid repetition
+                 q.add(m);
+                 s++;
+                 b[m]=true;
+                 bb[m]=true;
+             }//else if
+         }//for
+         bb[t]=false;//i.e element is removed from queue
+        }//while
         bb[j]=false;
         return false;
     }//detect 
