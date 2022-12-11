@@ -44,8 +44,11 @@ class Solution{//this is mine memorization code and it is simple and systematic
         return f(wt,val,N-1,W,dp);
     }
     public static int f(int wt[],int val[],int ind,int W ,int dp[][]){
+        if(W==0) return 0;
     if(ind == 0){
-        return ((int)(W/wt[0])) * val[0];
+       // return ((int)(W/wt[0])) * val[0];
+       if(wt[0]<=W) return (W/wt[0])*val[0];
+       return 0;//i.e wt[0]>W
     }
     
     if(dp[ind][W]!=-1)
