@@ -21,22 +21,26 @@ class RodCutting {
 // } Driver Code Ends
 
 
-class Solution{//memorization code by me
+class Solution{//tabulation solution  code by me
+// 7
+// 1 3 3 3 4 4 6
+// time n+n, space n*n;
     public int cutRod(int price[], int n) {
         //code here
         int dp[][]=new int[n][n+1];
         for(int[] e:dp) Arrays.fill(e,-1);
-        return f(price,dp,n,n-1);
-    }
-    public int f(int[] p,int[][] dp,int n,int i){
-        if(n==0) return 0;
-        if(i==0){
-            return (n/(i+1))*(p[i]);
-        }
-        if(dp[i][n]!=-1) return dp[i][n];
-        int np=f(p,dp,n,i-1);
-        int pp=0;
-        if(i+1<=n) pp=p[i]+f(p,dp,n-(i+1),i);
-        return dp[i][n]=Math.max(np,pp);
+        for(int k=0;k<n;k++) dp[k][0]=0;
+        for(int k=0;k<n+1;k++) dp[0][k]=(k/(0+1))*price[0];
+        //return f(price,dp,n,n-1);
+        
+        for(int i=1;i<n;i++){
+            for(int j=1;j<n+1;j++){
+               int np=dp[i-1][j];
+                int p=0;
+                if(i+1<=j) p=price[i]+dp[i][j-(i+1)];//here i used (i+1) very cleverly instead of i
+                dp[i][j]=Math.max(p,np);
+            }//for j
+        }//for i
+        return dp[n-1][n];
     }
 }
