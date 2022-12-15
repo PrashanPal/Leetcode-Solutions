@@ -31,48 +31,64 @@ class GFG {
 }
 // } Driver Code Ends
 
-
-class Solution {
-    //bfs based approach
+//for easy code of undirected graph cycle detection you can use any of dfs or bfs approach i.e out of two most
+//recetly submitted solution
+class Solution {//   BFS method it is--> easy striver-->undirected graph
     // Function to detect cycle in an undirected graph.
-    //since graph is undirected so 1->2 and 2->1 both are same ,so it is also a cycle and we have to avoid 
-    //this case  so ,its necessay to pass both current object and parent
-    public boolean isCycle(int v, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-        boolean b[]=new boolean[v];
-        boolean bb[]=new boolean[v];
-        for(int i=0;i<v;i++){
-            if(b[i]==false){
-                boolean r=detect(b,bb,adj,v,i);
-                if(r==true) return true;
-            }//if
-        }//for
-        return false;//i,e not cyclic
+    //Note : there is no need to take an extra parent array
+    class Node {
+    int first;//child
+    int second;//parent
+    public Node(int first, int second) {
+        this.first = first;
+        this.second = second; 
     }
-    public boolean detect(boolean b[],boolean bb[],ArrayList<ArrayList<Integer>> a,int v,int j){
-        b[j]=true;
-        bb[j]=true;
-        Queue<Integer> q=new ArrayDeque<>();
-        q.add(j);
-        int s=q.size();
-        while(s-->0){
-            int t=q.remove();
-            //bb[t]=false;//i.e element is removed from queue
-         ArrayList<Integer> aa=new ArrayList<>(a.get(t));
-         for(int i=0;i<aa.size();i++){
-             int m=aa.get(i);
-             if(b[m]==true&&bb[m]==true) //ie element is already traversed and also currently present in queue
-             return true;//cycle is present
-             else if(b[m]!=true){//i.e if its adjacent vertex is not already traversed,to avoid repetition
-                 q.add(m);
-                 s++;
-                 b[m]=true;
-                 bb[m]=true;
-             }//else if
-         }//for
-         bb[t]=false;//i.e element is removed from queue
-        }//while
-        bb[j]=false;
+}
+     public boolean checkForCycle(ArrayList<ArrayList<Integer>> adj, int s,boolean vis[])
+    {
+       Queue<Node> q =  new LinkedList<>(); //BFS
+       q.add(new Node(s, -1));//-1 is assumed to be default parent of 1st element of each new cycle or flow
+       vis[s] =true;
+       
+       // until the queue is empty
+       while(!q.isEmpty())
+       {
+           // source node and its parent node
+           int node = q.peek().first;
+           int par = q.peek().second;
+           q.remove(); 
+           
+           // go to all the adjacent nodes
+           for(Integer it: adj.get(node))
+           {
+               if(vis[it]==false)  
+               {
+                   q.add(new Node(it, node));
+                   vis[it] = true; 
+               }
+        
+                // if adjacent node is visited and is not its own parent node
+               else if(par != it) return true;//this line makes code so simple and easy
+           }
+       }
+       
+       return false;
+    }
+    
+    // function to detect cycle in an undirected graph
+    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj)
+    {
+        boolean vis[] = new boolean[V];
+        Arrays.fill(vis,false);
+        // int parent[] = new int[V];
+        // Arrays.fill(parent,-1);  
+        
+        for(int i=0;i<V;i++)
+            if(vis[i]==false) 
+                if(checkForCycle(adj, i,vis)) 
+                    return true;
+    
         return false;
-    }//detect 
+    }
+    
 }
