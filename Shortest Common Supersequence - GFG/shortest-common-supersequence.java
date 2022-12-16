@@ -40,6 +40,11 @@ class GFG {
 class Solution
 {
     //Function to find length of shortest common supersequence of two strings.
+    //approach : since we have to find the length of shortest common supersequence then ,it means the order of 
+    //sequence is matters alot ,so we find the length of largest common subsequence let it is "x" ,then 
+    //ans=(n-x)+(m-x)+x;
+    //dp-31,n2-281
+    //leetcode 1092
     public static int shortestCommonSupersequence(String X,String Y,int m,int n)
     {
         //Your code here
