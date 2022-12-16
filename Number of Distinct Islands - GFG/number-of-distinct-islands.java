@@ -34,6 +34,21 @@ class GFG {
 
 // User function Template for Java
 
+
+
+// User function Template for Java
+
+//s450 graph -->bfs/dfs 15.2 ,n2-54
+//PLEASE REMEMBER THIS: this question is very important as it involves path tracing of dfs flow, and stroing 
+//all these strings of path traces dfs traversal into set, we are using set here bcz it does't store repeated
+//paths, so it only store all the islands having unique path and hence set.size()--> total no. of unique islands
+//by the comparison of there structur
+
+//this approach is very helpfull for future and all remember this code becz its to easy to understand
+//QUESTION: why you used dfs approach here can we also use bfs approach for path tracing string creation?
+//ANSWER: no we can't use bfs approahc fere tracing its path in the form of string ,bcz bfs increases radially
+//so it is immpossible to trace its paths uniquelly, and hence for path tracing in string ,only dfs approach is
+//used always
 class Solution {
 //approch: use string and set concept
 //awesome solution by me
@@ -59,21 +74,23 @@ class Solution {
         }
         g[i][j]=-1;//to mark it visited
         if(i<g.length-1&&g[i+1][j]==1){
-            sb.append("e");
+            sb.append("e");//nice 
              find(g,i+1,j);
         }
         if(i>0&&g[i-1][j]==1){
-            sb.append("w");
+            sb.append("w");//nice
             find(g,i-1,j); 
         }
         if(j<g[0].length-1&&g[i][j+1]==1){
-            sb.append("s");
+            sb.append("s");//nice
         find(g,i,j+1); 
         }
         if(j>0&&g[i][j-1]==1) {
-            sb.append("n");
+            sb.append("n");//nice
             find(g,i,j-1); 
         }
-        sb.append("b");//i.e backtrack
+        sb.append("b");//i.e for representing the point of backtracking in the dfs path flow, and it is the
+        //most important step ,because it avoids all the chance of error or inaccuracy
+        
     }
 }
