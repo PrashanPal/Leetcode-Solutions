@@ -61,32 +61,48 @@ class Main {
 class Solution
 {
     //Function to return list containing vertices in Topological order. 
-    static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) //n2-32,se450, graph-15.3 topo sort
+    static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj)
+    //n2-53(kahn's algorithm) ,se450, graph-15.3 topo sort
+    //topological sort->n2-32
     {
         // add your code here
-        boolean b[]=new boolean [V];
+        int a[]=new int[V];
+       for(int i=0;i<V;i++){
+            for(int e:adj.get(i)){
+                a[e]=a[e]+1;
+            }//for
+        }//for
+        Queue<Integer> q=new ArrayDeque<>();
         Stack<Integer> st=new Stack<>();
         for(int i=0;i<V;i++){
-            if(b[i]==false){
-                f(adj,V,b,st,i);
-            }//if
+            if(a[i]==0){
+               q.add(i); 
+                st.push(i);
+            }
         }//for
-        int an[]=new int[st.size()];
-        int i=0;
+        f(adj,q,st,a,V);
+        int i=V-1;
         while(st.size()>0){
-            an[i]=st.pop();
-            i++;
-        }//while
-        return an;
-    }
-        public static void f(ArrayList<ArrayList<Integer>> a,int n,boolean b[],Stack<Integer> st,int i){
-            b[i]=true;
-            for(int e:a.get(i)){
-                if(b[e]==false){
-                    f(a,n,b,st,e);
-                }//if
-            }//for
-            st.push(i);
+            a[i]=st.pop();
+            i--;
+        }///while
+        //now our array 'a' is filled with final ans
+        return a;
         }//f
+        public static void f(ArrayList<ArrayList<Integer>> adj,Queue<Integer> q,Stack<Integer> st,int a[],int v){
+            while(q.size()>0){
+                int s=q.size();
+                while(s-->0){
+                    int t=q.remove();
+                    for(int e:adj.get(t)){
+                        a[e]=a[e]-1;//ie endegree decreases by 1
+                        if(a[e]==0){
+                          q.add(e); 
+                           st.push(e);
+                        }//if
+                    }//for
+                }//while s
+            }//while 
+        }
 }
  
