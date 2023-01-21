@@ -36,11 +36,10 @@ class Solution{//dp-42,s450,dp-16.7
          int[] dp=new int[n];
     Arrays.fill(dp,1);
     int[] hash=new int[n];
-    Arrays.fill(hash,1);
     
     for(int i=0; i<=n-1; i++){
         
-        hash[i] = i; // initializing with current index
+        hash[i] = i; // initializing with current index-->very important step
         for(int prev_index = 0; prev_index <=i-1; prev_index ++){
             
             if(arr[prev_index]<arr[i] && 1 + dp[prev_index] > dp[i]){
