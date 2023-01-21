@@ -40,6 +40,8 @@ class GFG{
 class Solution 
 {
     //Function to find length of longest increasing subsequence.
+    //n2--300,dp-43,s450,dp-16.7
+    //this is the most easy approach ,and to understand it see the last 5min of dp-42 video solution by striver
     static int longestSubsequence(int n, int arr[])
     {
         // code here
